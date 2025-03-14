@@ -1,0 +1,122 @@
+/* Global Styles for User Dashboard */
+body {
+    font-family: 'Arial', sans-serif;
+    background: url('../static/images/background.jpg') no-repeat center center fixed; /* Background image */
+    background-size: cover;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    color: #333; /* Dark text for contrast on cream background */
+    overflow-y: auto; /* Allow vertical scrolling */
+}
+
+/* Overlay for background image */
+body::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.4); /* Semi-transparent dark overlay */
+    z-index: -1; /* Send the overlay behind content */
+}
+
+/* User Dashboard Container */
+.user-container {
+    background: #f5f5dc; /* Cream background color */
+    padding: 50px;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    width: 100%;
+    max-width: 900px;
+    text-align: center;
+    z-index: 10;
+    position: relative;
+    margin-top: 100px; /* Distance from the top of the page */
+    color: #333; /* Dark text for readability */
+}
+
+/* Heading Styles */
+.user-container h2 {
+    font-size: 40px;
+    color: #FF6347; /* Tomato red for the heading */
+    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.7); /* Text shadow for better contrast */
+    margin-bottom: 40px;
+    font-weight: bold;
+}
+
+/* User Navigation Links */
+.user-nav a {
+    display: block;
+    background-color: #4B0082; /* Purple background for links */
+    color: white;
+    padding: 16px 28px;
+    font-size: 20px;
+    margin: 12px 0;
+    border-radius: 8px;
+    text-decoration: none;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.user-nav a:hover {
+    background-color: #6A0DAD; /* Light purple on hover */
+    transform: translateY(-4px); /* Slight lift effect */
+}
+
+/* User Actions (like Borrow/Return) Buttons */
+.user-actions {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.user-actions button {
+    background: linear-gradient(145deg, #FF6347, #FF4500); /* Vibrant red gradient */
+    color: white;
+    padding: 18px 40px; /* Resized the padding for larger buttons */
+    font-size: 20px;
+    border: none;
+    border-radius: 50px; /* Rounded corners */
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s, background 0.3s;
+    width: 220px; /* Increased the width for larger buttons */
+    font-weight: bold;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Add shadow for depth */
+}
+
+.user-actions button:hover {
+    transform: scale(1.05); /* Slight zoom effect on hover */
+    background: linear-gradient(145deg, #FF4500, #FF6347); /* Reverse gradient on hover */
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+/* Add additional hover effect for focus on button */
+.user-actions button:focus {
+    outline: none;
+    box-shadow: 0 0 0 4px rgba(255, 99, 71, 0.6); /* Tomato color focus ring */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .user-container {
+        width: 90%;
+        padding: 20px;
+    }
+
+    .user-nav a {
+        font-size: 18px;
+        padding: 14px 22px;
+    }
+
+    .user-actions button {
+        font-size: 16px;
+        padding: 14px 22px;
+        width: auto;
+    }
+}

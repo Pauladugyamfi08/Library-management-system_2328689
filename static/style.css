@@ -1,0 +1,226 @@
+/* Global Body Styling */
+body {
+    font-family: 'Arial', sans-serif; /* Changed to a more modern, readable font */
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    flex-direction: column;
+    background: url('image\ 4.jpg') no-repeat center center fixed; /* Default image */
+    background-size: cover;
+    color: #333; /* Default text color */
+    overflow-y: auto; /* Allow vertical scrolling */
+}
+
+/* Admin Dashboard Background */
+.admin-dashboard {
+    background: url('image\ 1.jpg') no-repeat center center fixed; /* Admin background */
+    background-size: cover;
+    color: white;
+}
+
+/* User Dashboard Background */
+.user-dashboard {
+    background: url('new\ image.jpg') no-repeat center center fixed; /* User background */
+    background-size: cover;
+    color: purple;
+}
+
+/* Overlay for the Background Image */
+.container, .login-container {
+    background: rgba(255, 255, 255, 0.9); /* Light transparent background */
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 0 25px rgba(0, 0, 0, 0.3);
+    width: 100%;
+    max-width: 550px;
+}
+
+/* Styling the Title */
+h2 {
+    text-align: center;
+    color: #6A0DAD; /* Lighter purple for a modern look */
+    margin-bottom: 20px;
+    font-size: 32px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+/* Input Group Styling */
+.input-group, .action-group {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    color: #4B0082; /* Matching the title color */
+    font-size: 18px;
+    font-weight: bold;
+}
+
+/* Inputs, Selects, and Buttons Styling */
+input, select, button {
+    width: 100%;
+    padding: 14px;
+    margin: 10px 0;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    font-size: 16px;
+    color: #333;
+}
+
+/* Select Input Styling (more appealing) */
+select {
+    background-color: #f9f9f9;
+    color: #333;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+/* Focus Styling for Inputs and Select */
+input:focus, select:focus {
+    border-color: #6A0DAD; /* Highlighting with purple on focus */
+    outline: none;
+}
+
+/* Button Styling */
+.login-btn, .action-btn {
+    background-color: #6A0DAD; /* Purple color */
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 16px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out;
+    font-weight: bold;
+}
+
+.login-btn:hover, .action-btn:hover {
+    background-color: #9B30FF; /* Lighter purple for hover */
+}
+
+/* Table Styling */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th, td {
+    padding: 14px;
+    border: 1px solid #ddd;
+    text-align: center;
+    font-size: 16px;
+}
+
+th {
+    background-color: #6A0DAD;
+    color: #fff;
+    text-transform: uppercase;
+}
+
+td {
+    background-color: rgba(255, 255, 255, 0.8);
+}
+
+/* Navigation Styling */
+nav {
+    text-align: center;
+    margin-top: 20px;
+}
+
+nav a {
+    margin: 0 15px;
+    padding: 12px 25px;
+    background: #6A0DAD; /* Purple background */
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-size: 18px;
+    transition: background 0.3s ease-in-out;
+}
+
+nav a:hover {
+    background: #9B30FF; /* Lighter purple for hover */
+}
+
+/* For Responsive Design on Smaller Screens */
+@media (max-width: 768px) {
+    .container, .login-container {
+        width: 90%;
+        padding: 25px;
+    }
+
+    h2 {
+        font-size: 28px;
+    }
+
+    .login-btn, .action-btn {
+        font-size: 16px;
+    }
+
+    table {
+        font-size: 14px;
+    }
+
+    nav a {
+        font-size: 16px;
+    }
+}
+
+/* Add Styles for Links in Tables (For Book and User Management) */
+a {
+    color: #6A0DAD;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease-in-out;
+}
+
+a:hover {
+    color: #9B30FF; /* Lighter purple on hover */
+}
+
+/* Ensure Add Book Button is Visible on Smaller Screens */
+.admin-actions button {
+    width: 100%;
+    margin-bottom: 10px;
+    font-size: 16px;
+}
+
+@media (max-width: 768px) {
+    .admin-actions button {
+        font-size: 14px;
+    }
+}
+
+/* Styling for the Book List on the Search Page */
+.book-list {
+    max-height: 300px; /* Limit the height of the book list */
+    overflow-y: auto; /* Enable vertical scrolling */
+    margin-top: 20px;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.9); /* Light transparent background */
+    border-radius: 15px;
+    box-shadow: 0 0 25px rgba(0, 0, 0, 0.3);
+}
+
+/* Ensure the Add Book Page is Scrollable */
+.add-book-page {
+    overflow-y: auto; /* Enable vertical scrolling */
+    height: 100vh; /* Use full viewport height */
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.9); /* Light transparent background */
+    border-radius: 15px;
+    box-shadow: 0 0 25px rgba(0, 0, 0, 0.3);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}

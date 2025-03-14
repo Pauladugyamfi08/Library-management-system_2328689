@@ -1,0 +1,174 @@
+/* Global Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    background: url('../static/image\ 1.jpg') no-repeat center center fixed; /* Background image */
+    background-size: cover;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column; /* Ensures content is stacked vertically */
+    justify-content: flex-start;
+    align-items: center;
+    height: 100vh;
+    color: #fff;
+    overflow-y: auto; /* Allow vertical scrolling */
+}
+
+/* Overlay for background image to darken it */
+body::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.4); /* Semi-transparent dark overlay */
+    z-index: -1; /* Send the overlay behind content */
+}
+
+/* Search Container */
+.search-container {
+    background: rgba(0, 0, 0, 0.6); /* Semi-transparent background for contrast */
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+    width: 100%;
+    max-width: 800px;
+    text-align: center;
+    z-index: 10;
+    position: relative;
+    margin-top: 100px; /* Distance from the top of the page */
+}
+
+/* Search Form */
+.search-container form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+label {
+    font-size: 22px;
+    color: #FFD700; /* Gold color for the label */
+    margin-bottom: 15px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); /* Light shadow for text */
+}
+
+/* Dropdown Menu */
+.search-select {
+    width: 100%;
+    padding: 15px;
+    margin: 10px 0;
+    border: 2px solid #4B0082;
+    border-radius: 5px;
+    font-size: 16px;
+    outline: none;
+    background-color: rgba(255, 255, 255, 0.9);
+    color: #333;
+    transition: border-color 0.3s ease;
+}
+
+.search-select:focus {
+    border-color: #FFD700; /* Gold border on focus */
+}
+
+/* Search Input Field */
+.search-input {
+    width: 100%;
+    padding: 15px;
+    margin: 15px 0;
+    border: 2px solid #4B0082;
+    border-radius: 5px;
+    font-size: 16px;
+    outline: none;
+    background-color: rgba(255, 255, 255, 0.9);
+    color: #333;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.search-input:focus {
+    border-color: #FFD700; /* Gold border on focus */
+    box-shadow: 0 0 8px rgba(255, 215, 0, 0.5); /* Gold shadow on focus */
+}
+
+/* Search Button */
+.search-btn {
+    background-color: #FF6347; /* Tomato red for button */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 15px 25px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+    width: 100%;
+    margin-top: 10px;
+}
+
+.search-btn:hover {
+    background-color: #FF4500; /* Darker red on hover */
+}
+
+/* Books List */
+.books-list {
+    margin-top: 40px;
+    text-align: left;
+}
+
+.book-item {
+    background-color: rgba(255, 255, 255, 0.9); /* Light background for book cards */
+    padding: 25px;
+    margin: 15px 0;
+    border-radius: 15px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.book-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+.book-item h4 {
+    font-size: 24px;
+    color: #4B0082;
+    margin-bottom: 10px;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.book-item p {
+    font-size: 18px;
+    color: #555;
+    line-height: 1.6;
+}
+
+.book-item .borrow-btn {
+    background-color: #32CD32;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.book-item .borrow-btn:hover {
+    background-color: #228B22;
+}
+
+/* No results message */
+.no-results {
+    font-size: 18px;
+    color: #FFD700;
+    font-style: italic;
+    margin-top: 20px;
+    display: none;
+}
+
+/* Optional Text Color Adjustments */
+.text-highlight {
+    color: #FFD700; /* Highlighted text in gold */
+    font-weight: bold;
+}
