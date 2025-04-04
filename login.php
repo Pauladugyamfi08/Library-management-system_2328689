@@ -44,8 +44,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Library Management System</title>
+    <title>Login - Library System</title>
     <link rel="stylesheet" href="../static/style.css">
+
 </head>
 <body>
     <div class="login-container">
@@ -54,11 +55,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <p class="error"><?php echo $message; ?></p>
         <?php endif; ?>
         <form method="POST">
-            <label for="role">Login</label>
+            <label for="role">Login as:</label>
             <select name="role" required>
                 <option value="">Select Role</option>
-                <option value="admin">Admin</option>
-                <option value="user">User</option>
+                <option value="admin"> Admin</option>
+                <option value="user"> User</option>
             </select>
             
             <label for="email">Email:</label>

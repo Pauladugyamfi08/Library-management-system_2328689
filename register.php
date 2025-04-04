@@ -1,20 +1,19 @@
 <?php
-require_once "../config/database.php"; // Database connection
+require_once "../config/database.php";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $first_name = $_POST["first_name"]; // User's first name
-    $last_name = $_POST["last_name"]; // User's last name
-    $email = $_POST["email"]; // User's email
-    $password = $_POST["password"]; // User's password
-    $confirm_password = $_POST["confirm_password"]; // Confirm password
+    $first_name = $_POST["first_name"];
+    $last_name = $_POST["last_name"];
+    $email = $_POST["email"];
+    $password = $_POST["password"];
+    $confirm_password = $_POST["confirm_password"];
+    $role = $_POST["role"];
 
-    // Validate that passwords match
     if ($password !== $confirm_password) {
         echo "Passwords do not match. Please try again.";
         exit;
     }
 
-    // Check if the email already exists in the database
     $stmt = $conn->prepare("SELECT * FROM users WHERE email = :email");
     $stmt->execute(['email' => $email]);
     $existingUser = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -24,10 +23,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         exit;
     }
 
-    // Hash the password before storing it
     $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
-    // Insert user into the database with the provided details
     try {
         $stmt = $conn->prepare("INSERT INTO users (first_name, last_name, email, password, role) VALUES (:first_name, :last_name, :email, :password, :role)");
         $stmt->execute([
@@ -35,11 +32,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             "last_name" => $last_name,
             "email" => $email,
             "password" => $hashed_password,
-            "role" => 'user' // Default role is 'user'
+            "role" => $role
         ]);
         echo "Registration successful! <a href='login.php'>Login here</a>";
     } catch (PDOException $e) {
-        // Catch the exception and show an error message
         echo "Error: " . $e->getMessage();
     }
 }
@@ -69,6 +65,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             <label for="confirm_password">Confirm Password:</label>
             <input type="password" name="confirm_password" id="confirm_password" placeholder="Confirm Password" required><br><br>
+
+            <label for="role">Role:</label>
+            <select name="role" id="role" required>
+                <option value="user">User</option>
+                <option value="admin">Admin</option>
+            </select><br><br>
 
             <button type="submit">Register</button>
         </form>

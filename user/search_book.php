@@ -27,7 +27,7 @@ $books = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Search Books - Library System</title>
     <link rel="stylesheet" href="../static/style.css">
-    <link rel="stylesheet" href="../static/search_style.css">
+    
 </head>
 <body>
     <div class="search-container">
@@ -38,7 +38,7 @@ $books = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <select name="filter" id="filter" class="search-select">
                 <option value="title" <?php echo ($filter == "title") ? 'selected' : ''; ?>>Title</option>
                 <option value="author" <?php echo ($filter == "author") ? 'selected' : ''; ?>>Author</option>
-                <option value="year" <?php echo ($filter == "year") ? 'selected' : ''; ?>>Year</option>
+                <option value="genre" <?php echo ($filter == "genre") ? 'selected' : ''; ?>>Genre</option>
             </select>
 
             <input type="text" name="search" class="search-input" placeholder="Search..." value="<?php echo htmlspecialchars($search_query); ?>" required>
@@ -48,26 +48,25 @@ $books = $stmt->fetchAll(PDO::FETCH_ASSOC);
         <div class="no-results" <?php echo empty($books) ? 'style="display:block;"' : 'style="display:none;"'; ?>>
             <p>No available books.</p>
         </div>
+    </div>
 
-        <div class="books-list" <?php echo !empty($books) ? 'style="display:block;"' : 'style="display:none;"'; ?>>
-            <?php if (count($books) > 0): ?>
-                <?php foreach ($books as $book): ?>
-                    <div class="book-item">
-                        <h4><?php echo htmlspecialchars($book['title']); ?></h4>
-                        <p>Author: <?php echo htmlspecialchars($book['author']); ?></p>
-                        <p>Year: <?php echo htmlspecialchars($book['year']); ?></p>
-                        <p>Genre: <?php echo htmlspecialchars($book['genre']); ?></p>
-                        <p>Available Quantity: <?php echo $book['quantity']; ?></p>
-                        
-                       
-                        <form action="borrow.php" method="POST">
-                            <input type="hidden" name="book_id" value="<?php echo $book['id']; ?>">
-                            <button type="submit" class="borrow-btn">Borrow</button>
-                        </form>
-                    </div>
-                <?php endforeach; ?>
-            <?php endif; ?>
-        </div>
+    <div class="books-list" <?php echo !empty($books) ? 'style="display:block;"' : 'style="display:none;"'; ?>>
+        <?php if (count($books) > 0): ?>
+            <?php foreach ($books as $book): ?>
+                <div class="book-item">
+                    <h4><?php echo htmlspecialchars($book['title']); ?></h4>
+                    <p>Author: <?php echo htmlspecialchars($book['author']); ?></p>
+                    <p>Year: <?php echo htmlspecialchars($book['year']); ?></p>
+                    <p>Genre: <?php echo htmlspecialchars($book['genre']); ?></p>
+                    <p>Available Quantity: <?php echo $book['quantity']; ?></p>
+                    
+                    <form action="borrow.php" method="POST">
+                        <input type="hidden" name="book_id" value="<?php echo $book['id']; ?>">
+                        <button type="submit" class="borrow-btn">Borrow</button>
+                    </form>
+                </div>
+            <?php endforeach; ?>
+        <?php endif; ?>
     </div>
 </body>
 </html>

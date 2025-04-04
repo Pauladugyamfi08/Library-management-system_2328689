@@ -26,10 +26,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["book_id"])) {
     $stmt->execute(["user_id" => $user_id, "book_id" => $book_id]);
 
     // Update book availability
-    $stmt = $conn->prepare("UPDATE books SET available = 1 WHERE id = :book_id");
+    $stmt = $conn->prepare("UPDATE books SET available = available + 1 WHERE id = :book_id");
     $stmt->execute(["book_id" => $book_id]);
 
-    echo "<p style='color: green;'>Book returned successfully!</p>";
+    // Redirect to the same page to refresh the list of borrowed books
+    header("Location: return_book.php");
+    exit();
 }
 ?>
 
@@ -48,7 +50,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["book_id"])) {
             <form method="POST">
                 <select name="book_id" required>
                     <?php foreach ($borrowed_books as $book): ?>
-                        <option value="<?= $book['id'] ?>"><?= $book['title'] ?> by <?= $book['author'] ?></option>
+                        <option value="<?= $book['id'] ?>"><?= htmlspecialchars($book['title']) ?> by <?= htmlspecialchars($book['author']) ?></option>
                     <?php endforeach; ?>
                 </select><br><br>
                 <button type="submit">Return</button>

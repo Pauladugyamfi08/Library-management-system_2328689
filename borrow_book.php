@@ -10,8 +10,8 @@ if (!isset($_SESSION["user_id"])) {
     die("You must be logged in to borrow a book.");
 }
 
-$success_message = '';  // Initialize the success message variable
-$error_message = '';    // Initialize the error message variable
+$success_message = '';  
+$error_message = '';    
 
 // Fetch available books for the dropdown
 $stmt = $conn->query("SELECT * FROM books WHERE available > 0"); // Ensure that the 'available' column is greater than 0
@@ -22,29 +22,30 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["book_id"])) {
     $book_id = $_POST["book_id"];
     $user_id = $_SESSION["user_id"];
 
-    // Check how many books the user has already borrowed
-    $stmt = $conn->prepare("SELECT COUNT(*) FROM borrowed_books WHERE user_id = :user_id");
-    $stmt->execute(["user_id" => $user_id]);
-    $borrowed_count = $stmt->fetchColumn();
+    try {
+        // Check if the user has already borrowed this book
+        $stmt = $conn->prepare("SELECT * FROM borrowed_books WHERE user_id = :user_id AND book_id = :book_id");
+        $stmt->execute(["user_id" => $user_id, "book_id" => $book_id]);
+        $already_borrowed = $stmt->fetch(PDO::FETCH_ASSOC);
 
-    if ($borrowed_count >= 3) {
-        $error_message = "Sorry, you have reached your limit.";
-    } else {
-        try {
+        if ($already_borrowed) {
+            // User has already borrowed this book
+            $error_message = "You have already borrowed this book. Please choose a different book.";
+        } else {
             // Insert into borrowed_books table
             $stmt = $conn->prepare("INSERT INTO borrowed_books (user_id, book_id) VALUES (:user_id, :book_id)");
             $stmt->execute(["user_id" => $user_id, "book_id" => $book_id]);
 
-            // Update book status to unavailable (0) since it's now borrowed
+            // Update book status to unavailable (decrement available count)
             $stmt = $conn->prepare("UPDATE books SET available = available - 1 WHERE id = :book_id AND available > 0");
             $stmt->execute(["book_id" => $book_id]);
 
             // Set success message
             $success_message = "You have successfully borrowed the book!";
-        } catch (PDOException $e) {
-            // Handle errors
-            $error_message = "Error: " . $e->getMessage();
         }
+    } catch (PDOException $e) {
+        // Handle errors
+        $error_message = "Error: " . $e->getMessage();
     }
 }
 ?>

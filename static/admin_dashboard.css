@@ -1,0 +1,146 @@
+/* Admin Dashboard CSS */
+body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    background: url('../static/new\ image.jpg') no-repeat center center fixed;
+    background-size: cover;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+/* Header */
+header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    background-color: rgba(44, 62, 80, 0.8);
+    color: white;
+    padding: 5px 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+header h1 {
+    font-size: 24px;
+    margin: 0 auto;
+}
+
+/* Register Button */
+.top-left {
+    position: absolute;
+    left: 10px;
+    top: 8px;
+}
+
+.register-btn {
+    background-color: #3498db;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.register-btn:hover {
+    background-color: #2980b9;
+}
+
+/* Logout Button */
+.logout-container {
+    position: absolute;
+    right: 15px;
+    top: 8px;
+}
+
+.logout-btn {
+    background-color: #e74c3c;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.logout-btn:hover {
+    background-color: #c0392b;
+}
+
+/* Admin Container */
+.admin-container {
+    padding: 20px;
+    margin: auto;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 50%;
+    max-width: 800px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* Navigation */
+.admin-nav {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.admin-nav a {
+    text-decoration: none;
+    color: white;
+    background-color: #3498db;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.admin-nav a:hover {
+    background-color: #2980b9;
+}
+
+/* Action Buttons */
+.admin-actions {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+}
+
+.admin-actions button {
+    background-color: #2ecc5b;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.admin-actions button:hover {
+    background-color: #27ae60;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    color: white;
+    margin-top: auto;
+    font-size: 14px;
+    padding: 10px 0;
+    background-color: rgba(44, 62, 80, 0.8);
+    box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.2);
+}
