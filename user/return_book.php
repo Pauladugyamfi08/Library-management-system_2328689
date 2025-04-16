@@ -40,8 +40,27 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["book_id"])) {
 <head>
     <title>Return Book</title>
     <link rel="stylesheet" href="../static/style.css">
+    <style>
+        .home-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: #007BFF;
+            color: white;
+            padding: 10px 15px;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+
+        .home-btn:hover {
+            background-color: #0056b3;
+        }
+    </style>
 </head>
 <body>
+    <!-- Home Button -->
+    <a href="../dashboard/user_dashboard.php" class="home-btn">Home</a>
+
     <div class="container">
         <h2>Return a Book</h2>
         <?php if (empty($borrowed_books)): ?>

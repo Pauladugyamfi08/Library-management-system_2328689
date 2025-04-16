@@ -15,8 +15,27 @@ $users = $conn->query("SELECT * FROM users")->fetchAll(PDO::FETCH_ASSOC);
 <head>
     <title>Manage Users</title>
     <link rel="stylesheet" href="../static/style.css">
+    <style>
+        .home-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: #007BFF;
+            color: white;
+            padding: 10px 15px;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+
+        .home-btn:hover {
+            background-color: #0056b3;
+        }
+    </style>
 </head>
 <body>
+    <!-- Home Button -->
+    <a href="../dashboard/admin_dashboard.php" class="home-btn">Home</a>
+
     <div class="container">
         <h2>Manage Users</h2>
         <table border="1">

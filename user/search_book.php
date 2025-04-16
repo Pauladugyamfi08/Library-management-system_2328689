@@ -27,9 +27,27 @@ $books = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Search Books - Library System</title>
     <link rel="stylesheet" href="../static/style.css">
-    
+    <style>
+        .home-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: #007BFF;
+            color: white;
+            padding: 10px 15px;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+
+        .home-btn:hover {
+            background-color: #0056b3;
+        }
+    </style>
 </head>
 <body>
+    <!-- Home Button -->
+    <a href="../dashboard/user_dashboard.php" class="home-btn">Home</a>
+
     <div class="search-container">
         <h2>Search Books</h2>
 
@@ -60,7 +78,7 @@ $books = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     <p>Genre: <?php echo htmlspecialchars($book['genre']); ?></p>
                     <p>Available Quantity: <?php echo $book['quantity']; ?></p>
                     
-                    <form action="borrow.php" method="POST">
+                    <form action="borrow_book.php" method="POST">
                         <input type="hidden" name="book_id" value="<?php echo $book['id']; ?>">
                         <button type="submit" class="borrow-btn">Borrow</button>
                     </form>
