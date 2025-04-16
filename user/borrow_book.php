@@ -23,25 +23,35 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["book_id"])) {
     $user_id = $_SESSION["user_id"];
 
     try {
-        // Check if the user has already borrowed this book
-        $stmt = $conn->prepare("SELECT * FROM borrowed_books WHERE user_id = :user_id AND book_id = :book_id");
-        $stmt->execute(["user_id" => $user_id, "book_id" => $book_id]);
-        $already_borrowed = $stmt->fetch(PDO::FETCH_ASSOC);
+        // Check how many books the user has already borrowed
+        $stmt = $conn->prepare("SELECT COUNT(*) AS borrowed_count FROM borrowed_books WHERE user_id = :user_id");
+        $stmt->execute(["user_id" => $user_id]);
+        $borrowed_count = $stmt->fetch(PDO::FETCH_ASSOC)['borrowed_count'];
 
-        if ($already_borrowed) {
-            // User has already borrowed this book
-            $error_message = "You have already borrowed this book. Please choose a different book.";
+        if ($borrowed_count >= 2) {
+            // Restrict borrowing if the user already has 2 or more books
+            $error_message = "You can only borrow up to 2 books at a time.";
         } else {
-            // Insert into borrowed_books table
-            $stmt = $conn->prepare("INSERT INTO borrowed_books (user_id, book_id) VALUES (:user_id, :book_id)");
+            // Check if the user has already borrowed this book
+            $stmt = $conn->prepare("SELECT * FROM borrowed_books WHERE user_id = :user_id AND book_id = :book_id");
             $stmt->execute(["user_id" => $user_id, "book_id" => $book_id]);
+            $already_borrowed = $stmt->fetch(PDO::FETCH_ASSOC);
 
-            // Update book status to unavailable (decrement available count)
-            $stmt = $conn->prepare("UPDATE books SET available = available - 1 WHERE id = :book_id AND available > 0");
-            $stmt->execute(["book_id" => $book_id]);
+            if ($already_borrowed) {
+                // User has already borrowed this book
+                $error_message = "You have already borrowed this book. Please choose a different book.";
+            } else {
+                // Insert into borrowed_books table
+                $stmt = $conn->prepare("INSERT INTO borrowed_books (user_id, book_id) VALUES (:user_id, :book_id)");
+                $stmt->execute(["user_id" => $user_id, "book_id" => $book_id]);
 
-            // Set success message
-            $success_message = "You have successfully borrowed the book!";
+                // Update book status to unavailable (decrement available count)
+                $stmt = $conn->prepare("UPDATE books SET available = available - 1 WHERE id = :book_id AND available > 0");
+                $stmt->execute(["book_id" => $book_id]);
+
+                // Set success message
+                $success_message = "You have successfully borrowed the book!";
+            }
         }
     } catch (PDOException $e) {
         // Handle errors
